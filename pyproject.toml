@@ -9,6 +9,7 @@ packages = [{include = "django_current_usd"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+django = "^5.0.1"
 
 
 [build-system]
