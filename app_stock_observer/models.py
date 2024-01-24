@@ -3,34 +3,22 @@ from django.db import models
 
 class CourseJournal(models.Model):
     section = models.CharField(
-        verbose_name='Секция/валютная пара', 
-        max_length=10, blank=True, null=True,
-        help_text='''Данное поле показывает из какой секции торгов<br>
-        была произведена запись. Другими словами, можно воспринимать как<br>
-        название инструмента (валютной пары).
+        verbose_name='Название инструмента', 
+        max_length=100, blank=True, null=True,
+        help_text='''Название инструмента.<br>
+        Для демострации была найдена API от tradingview.<br>
+        Инструмент SI - это фьючерс на USD/RUB.<br>
+        Производный инструмент от спот рынка - поэтому есть разница в котировках.
         '''
     )
-    spread = models.DecimalField(
-        verbose_name='Спред', 
+    exchange_rate = models.DecimalField(
+        verbose_name='Значение инструмента', 
         max_digits=15, decimal_places=5, default=0, 
         blank=True, null=True,
-        help_text='''Разность между лучшими ценами заявок на продажу (аск) и на покупку (бид)<br>
-        в один и тот же момент времени на какой-либо актив.
-        '''
     )
-    bid = models.DecimalField(
-        verbose_name='Бид', 
-        max_digits=15, decimal_places=5, default=0, 
-        blank=True, null=True,
-        help_text='''Цена спроса, наивысшая цена покупателя, по которой он согласен купить.
-        '''
-    )
-    ask = models.DecimalField(
-        verbose_name='Аск', 
-        max_digits=15, decimal_places=5, default=0, 
-        blank=True, null=True,
-        help_text='''Цена, по которой продавец согласен продать.
-        '''
+    date_time = models.DateTimeField(
+        verbose_name='Дата/Время', 
+        auto_now_add=True,
     )
 
 
