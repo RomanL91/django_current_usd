@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "django-current-usd"
+version = "0.1.0"
+description = "Technical assignment: We suggest you create a “bare” Django project, which, upon going to the /get-current-usd/ page, will display the current dollar to ruble exchange rate in json format (request via API, find it yourself) and show the 10 latest requests (pause between course requests must be at least 10 seconds long)."
+authors = ["RomanL91 <dev_roman91@mail.ru>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "django_current_usd"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
