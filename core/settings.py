@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # add apps
+    'app_stock_observer',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,51 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ====================== my  adding ======================
+
+TIME_ZONE = 'Asia/Omsk' 
+USE_TZ = False
+
+# это API для получения курса USD/RUB
+# URL_API_CURRENT_USD = 'https://iss.moex.com/iss/engines/futures/markets/forts/securities.json?sectypes=US'
+URL_API_CURRENT_USD = 'https://scanner.tradingview.com/futures/scan'
+INFORMATION_FOR_DOWNLOAD = {
+    "columns": [
+        "pricescale",
+        "minmov",
+        "minmove2",
+        "fractional",
+        "expiration",
+        "close",
+        "name"
+    ],
+    "filter": [
+        {
+            "left": "close",
+            "operation": "nempty"
+        },
+        {
+            "left": "expiration",
+            "operation": "nempty"
+        },
+        {
+            "left": "root",
+            "operation": "equal",
+            "right": "MOEX:SI"
+        }
+    ],
+    "ignore_unknown_fields": False,
+    "sort": {
+        "sortBy": "expiration",
+        "sortOrder": "asc"
+    },
+    "markets": [
+        "futures"
+    ]
+}
+
+# интервал обращения к URL_API_CURRENT_USD для получения данный
+REQUEST_DELAY_INTERVAL = 10
+
+# ====================== end adding ======================
