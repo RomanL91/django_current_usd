@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    entrypoint:
+      - ./entrypoint.sh
+    expose:
+      - 8000
+    networks:
+      - djangonetwork
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - web
+    networks:
+      - djangonetwork
+
+volumes:
+  static_volume:
+  media_volume:
+
+networks:
+    djangonetwork:
+        driver: bridge
