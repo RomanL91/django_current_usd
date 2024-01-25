@@ -1,8 +1,9 @@
 from django.urls import path
 
-from app_stock_observer.views import MyView
+from app_stock_observer.views import RootView, GetCurrentUsd
 
 
 urlpatterns_get_current = [
-    path('get-current-usd/', MyView.as_view(), name="my-view"),
+    path('', RootView.as_view(), name="root"),
+    path('get-current-usd/', GetCurrentUsd.as_view(), name="get_current_usd"),
 ]
