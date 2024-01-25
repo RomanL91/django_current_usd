@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-rw!91==p%jr!&#$)lo6@v7r+d*6(w)5*&m%!qcs-x1f##3$9%y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 
 # Application definition
@@ -117,7 +117,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -125,9 +125,24 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ====================== my  adding ======================
+import os
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 TIME_ZONE = 'Asia/Omsk' 
-USE_TZ = False
+USE_TZ = True
+
+ASGI_APPLICATION = 'core.asgi.application'
+
+DEFAULT_ADMIN = {
+    'username': 'admin',
+    'email': 'admin@mail.ru',
+    'password': 'Eto@$SamuySlojnuy123Parol!',
+}
 
 # это API для получения курса USD/RUB
 # URL_API_CURRENT_USD = 'https://iss.moex.com/iss/engines/futures/markets/forts/securities.json?sectypes=US'
