@@ -22,6 +22,16 @@ class CourseJournal(models.Model):
     )
 
 
+    @property
+    def to_dict(self):
+        return {
+            'record_id': self.pk,
+            'currency_pair': self.section,
+            'exchange_rate': self.exchange_rate,
+            'date_time': self.date_time,
+        }
+
+
     class Meta:
         verbose_name = 'Валютный курс'
         verbose_name_plural = 'Журнал валютных курсов'
