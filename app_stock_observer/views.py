@@ -63,6 +63,7 @@ class RootView(View):
         для админки:<br>
         логин: admin<br>
         пароль: Eto@$SamuySlojnuy123Parol!<br>
+        <a href="/admin/">админка</a><br>
         <br>
         <hr>
         Спасибо за предоставленную возможноть.<br>
