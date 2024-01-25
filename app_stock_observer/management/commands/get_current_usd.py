@@ -10,6 +10,8 @@ from django.core.management.base import BaseCommand
 
 from app_stock_observer.models import CourseJournal
 
+from django.contrib.auth.models import User
+
 # from django.utils import timezone
 
 
@@ -27,8 +29,26 @@ class Command(BaseCommand):
         print('[==INFO==] Unified_State_Internet_Access_Gateway.cer добавлен')
 
 
-    def get_current_usd(self):
+    def admin_init(self):
+        admin = settings.DEFAULT_ADMIN
+        super_user_qs = User.objects.filter(is_superuser=True)
+        if super_user_qs.count() == 0:
+            super_user = User.objects.create(
+                username = admin['username'],
+                email = admin['email'],
+                password = admin['password'],
+                # is_active = True,
+                # is_staff = True,
+                is_superuser = True
+            )
+            super_user.save()
+            print(f'[==INFO==] Суперпользователь {admin["username"]} с паролем {admin["password"]} создан.')
+        else:
+            print('[==INFO==] Суперпользователь уже существует.')
 
+
+    def get_current_usd(self):
+        # self.admin_init()
         self.add_SSL_certi()
 
         print('[==INFO==] Запуск скрипта получения данных курса USD/RUB.')
